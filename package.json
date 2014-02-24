@@ -1,23 +1,32 @@
 {
   "name": "testplate",
   "version": "0.1.0",
-  "private": true,
   "description": "Test boiler plate",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jashkenas/coffee-script.git"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
   "dependencies": {
     "connect": "*",
     "async": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "coffee-script": "1.6.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-compass": "~0.7.2",
-    "grunt-contrib-coffee": "*",
+    "grunt-contrib-coffee": "~0.10.1",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-concat": "*",
     "grunt-bower-task": "*",
-    "uglify-js": "*"
+    "uglify-js": "*",
+    "glob": "*"
   }
 }

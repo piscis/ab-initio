@@ -45,6 +45,10 @@ module.exports = (grunt) ->
       files: ['app/frontend/js/**/*.js']
       tasks: ['copy:frontend']
 
+  cleanTask =
+    all:
+      src: ["build/*", "release/*"]
+
   # Configure Grunt
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
@@ -53,14 +57,15 @@ module.exports = (grunt) ->
     coffee: coffeeTask
     copy: copyTask
     watch: watchTask
+    clean: cleanTask
 
-  grunt.loadNpmTasks('grunt-contrip-compass')
-  grunt.loadNpmTasks('grunt-contrip-coffee')
-  grunt.loadNpmTasks('grunt-contrip-uglify')
-  grunt.loadNpmTasks('grunt-contrip-clean')
-  grunt.loadNpmTasks('grunt-contrip-copy')
-  grunt.loadNpmTasks('grunt-contrip-concat')
-  grunt.loadNpmTasks('grunt-contrip-watch')
+  grunt.loadNpmTasks('grunt-contrib-compass')
+  grunt.loadNpmTasks('grunt-contrib-coffee')
+  grunt.loadNpmTasks('grunt-contrib-uglify')
+  grunt.loadNpmTasks('grunt-contrib-clean')
+  grunt.loadNpmTasks('grunt-contrib-copy')
+  grunt.loadNpmTasks('grunt-contrib-concat')
+  grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-bower-task')
 
 
