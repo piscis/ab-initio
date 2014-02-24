@@ -1,0 +1,11 @@
+{
+	"name": "testplate",
+	"version": "0.0.1",
+	"dependencies": {
+		"jquery": "1.10.2",
+		"underscore": "1.4.4",
+		"async": "0.2.5",
+		"screenfull": "1.1.1",
+		"dropzone": "3.8.4"
+	}
+}
