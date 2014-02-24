@@ -1,15 +1,23 @@
 {
   "name": "testplate",
   "version": "0.1.0",
+  "private": true,
+  "description": "Test boiler plate",
+  "dependencies": {
+    "connect": "*",
+    "async": "*",
+    "underscore": "*"
+  },
   "devDependencies": {
-    "grunt": "*",
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-nodeunit": "*",
+    "grunt": "~0.4.1",
+    "grunt-contrib-compass": "~0.7.2",
+    "grunt-contrib-coffee": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-stylus": "*",
-    "grunt-contrib-concat": "*",
-    "grunt-component-build": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-clean": "*",
     "grunt-contrib-copy": "*",
-    "grunt-contrib-watch": "*"
+    "grunt-contrib-concat": "*",
+    "grunt-bower-task": "*",
+    "uglify-js": "*"
   }
 }
