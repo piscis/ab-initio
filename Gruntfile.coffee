@@ -5,8 +5,8 @@ module.exports = (grunt) ->
     dev:
       options:
         httpPath: "/"
-        cssDir: "public/css"
-        sassDir: "assets/sass"
+        cssDir: "build/public/css"
+        sassDir: "app/resources/assets/sass"
         noLineComments: false
         debugInfo: false
 
@@ -14,7 +14,7 @@ module.exports = (grunt) ->
   bowerTask =
     install:
       options:
-        targetDir: "public/lib",
+        targetDir: "build/public/libs",
         layout: 'byType',
         install: true,
         verbose: false,
@@ -24,25 +24,25 @@ module.exports = (grunt) ->
 
   # Task Coffee
   coffeeTask =
-    files: []
-    options:
-      bare: false
-      sourceMap: false
+    compile:
+      files:
+        'build/app.js': [ 'app/app.coffee' ]
+      options:
+        bare: false
+        sourceMap: false
 
   copyTask =
     frontend:
       files: [
-        {
-          expand: true
-          cwd: 'public'
-          src: [ '*' ]
-          dest: [ 'build/public' ]
-        }
+        { expand: true, cwd: 'app/public', src: [ '*.*' ], dest: 'build/public' }
       ]
 
   watchTask =
+    compass:
+      files: ['app/resources/assets/sass/*.scss', 'app/resources/assets/sass/*.sass', 'app/resources/assets/sass/**/*.scss', 'app/resources/assets/sass/**/*.sass']
+      tasks: ['compass']
     js:
-      files: ['app/frontend/js/**/*.js']
+      files: ['app/public/**/*','app/public/*.*']
       tasks: ['copy:frontend']
 
   cleanTask =
@@ -68,9 +68,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-bower-task')
 
-
   grunt.registerTask 'default', [
     'clean',
+    'bower',
     'compass:dev',
-    'copy:frontend'
+    'copy:frontend',
+    'coffee',
+    'watch'
   ]
