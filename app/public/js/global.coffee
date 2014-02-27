@@ -1,0 +1,1 @@
+# NoJquery available at this point

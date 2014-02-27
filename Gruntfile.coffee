@@ -14,40 +14,96 @@ module.exports = (grunt) ->
   bowerTask =
     install:
       options:
-        targetDir: "build/public/libs",
-        layout: 'byType',
-        install: true,
-        verbose: false,
-        cleanTargetDir: false,
-        cleanBowerDir: false,
+        targetDir: "build/public/js/libs"
+        layout: 'byType'
+        install: true
+        verbose: false
+        cleanTargetDir: false
+        cleanBowerDir: false
         bowerOptions: {}
 
   # Task Coffee
   coffeeTask =
     compile:
-      files:
-        'build/app.js': [ 'app/app.coffee' ]
+      expand: true
+      flatten: false
+      cwd: 'app'
+      src: [ '*.coffee', '**/*.coffee' ]
+      dest: 'build/'
+      ext: '.js'
       options:
-        bare: false
+        bare: true
+        watch: true
+        force: true
         sourceMap: false
+
+  includeSourcesTask =
+    options:
+      basePath: 'build/public'
+      baseUrl: '/'
+    myTarget:
+      files:
+        'build/public/index.html': 'build/public/index.html'
 
   copyTask =
     frontend:
       files: [
-        { expand: true, cwd: 'app/public', src: [ '*.*' ], dest: 'build/public' }
+        { expand: true, cwd: 'app/public', src: [ '*.*','**/*.*' ], dest: 'build/public' }
       ]
 
   watchTask =
     compass:
-      files: ['app/resources/assets/sass/*.scss', 'app/resources/assets/sass/*.sass', 'app/resources/assets/sass/**/*.scss', 'app/resources/assets/sass/**/*.sass']
-      tasks: ['compass']
-    js:
-      files: ['app/public/**/*','app/public/*.*']
-      tasks: ['copy:frontend']
+      files: [ 'app/resources/assets/sass/main.sass' ]
+      tasks: [ 'compass' ]
+    frontend:
+      files: [ 'app/public/**/*.*','app/public/*.*' ]
+      tasks: [ 'copy:frontend', 'clean:sassArtifacts', 'includeSource' ]
+    coffee:
+      files: [ 'app/public/**/*.coffee','app/public/*.coffee' ]
+      tasks: [ 'coffee:compile' ]
+      options:
+        spawn: false
+    express:
+      files:  [
+        'app/app.coffee',
+        'app/controller/*.coffee',
+        'app/router/**/*.coffee'
+      ]
+      tasks: [ 'coffee:compile','express:dev']
+      options:
+        spawn: false
 
   cleanTask =
     all:
       src: ["build/*", "release/*"]
+    sassArtifacts:
+      src: ["build/public/css/vendor", "build/public/css/site","build/public/**/*.coffee"]
+
+
+  uglifyTask =
+    js:
+      files:
+        'build/public/js/libs/all.js': [
+          'bower_components/jquery/jquery.js'
+          'bower_components/async/lib/async.js'
+          'bower_components/underscore/underscore.js'
+          'bower_components/dropzone/downloads/dropzone.js'
+          'bower_components/screenfull/screenfull.js'
+        ],
+      options:
+        preserveComments: true
+
+  expressTask =
+    options: {}
+    dev:
+      options:
+        script: 'build/app.js'
+        node_env: 'development'
+        debug: true
+    prod:
+      options:
+        script: 'path/to/prod/server.js'
+        node_env: 'production'
 
   # Configure Grunt
   grunt.initConfig
@@ -58,6 +114,9 @@ module.exports = (grunt) ->
     copy: copyTask
     watch: watchTask
     clean: cleanTask
+    uglify: uglifyTask
+    express: expressTask
+    includeSource: includeSourcesTask
 
   grunt.loadNpmTasks('grunt-contrib-compass')
   grunt.loadNpmTasks('grunt-contrib-coffee')
@@ -67,12 +126,18 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-bower-task')
+  grunt.loadNpmTasks('grunt-express-server')
+  grunt.loadNpmTasks('grunt-include-source')
 
   grunt.registerTask 'default', [
-    'clean',
-    'bower',
-    'compass:dev',
-    'copy:frontend',
-    'coffee',
+    'clean:all'
+    'bower'
+    'compass:dev'
+    'coffee'
+    'uglify:js'
+    'copy:frontend'
+    'clean:sassArtifacts'
+    'includeSource'
+    'express:dev'
     'watch'
   ]
