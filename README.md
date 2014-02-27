@@ -1,8 +1,8 @@
-### Ab initio
+## Ab initio
 
 **Ab initio** is a small boilerplate setup that eases the "pain" of setting up a local development playground.
 
-#### Quick Start
+### Quick Start
 
   1. Clone this repository: `git clone https://github.com/piscis/ab-initio your-sandbox` or fork it on github.com
   2. Install NodeJS from -> [nodejs.org](http://nodejs.org)
@@ -11,9 +11,7 @@
   5. Install local dependencies: `npm install --dev`
   6. Start playing: `grunt`
 
-#### Optional steps
-
-##### Save your work
+### Optional step: Save your work
 
 If you cloned this repository and want to save your work back to Github a can change the remote origin configuration
 and push your changes to your own private or public repository
@@ -23,7 +21,7 @@ and push your changes to your own private or public repository
   3. Setting the upstream branch: `git branch --set-upstream-to=origin/master master`
   4. Push your changes: `git push origin master`
 
-#### ?? Ab initio / Ab-Init.io Abinitio / oitiniab ??
+### ?? Ab initio / Ab-Init.io Abinitio / oitiniab ??
 
 You might wonder if there is a meaning behind the repository name ... AND yes there is. It's latin for "from the beginning" [WikiPedia](http://en.wikipedia.org/wiki/Ab_initio).
 So don't let the chance slip to say something smart in your next meeting like:
@@ -32,7 +30,7 @@ From "ab initio" I used "Ab-initio" to test `feature/library/framework XYZ`.
 
 Okay just kidding ... Anyway hope this is helpful for someone else .. Enjoy!
 
-#### The MIT License (MIT)
+### The MIT License (MIT)
 
 Copyright (c) 2014 Alexander Pirsig <self@pirsig.net>
 
