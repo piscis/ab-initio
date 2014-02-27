@@ -5,7 +5,7 @@
 #### Quick Start
 
   1. Clone this repository: `git clone https://github.com/piscis/ab-initio your-sandbox` or fork it on github.com
-  2. Install NodeJS from -> [http://nodejs.org](nodejs.org)
+  2. Install NodeJS from -> [nodejs.org](http://nodejs.org)
   3. Install grunt with npm: `npm install -g grunt`
   4. Install bower: `npm install -g bower`
   5. Install local dependencies: `npm install --dev`
@@ -25,7 +25,7 @@ and push your changes to your own private or public repository
 
 #### ?? Ab initio / Ab-Init.io Abinitio / oitiniab ??
 
-You might wonder if there is a meaning behind the repository name ... AND yes there is. It's latin for "from the beginning"  [http://en.wikipedia.org/wiki/Ab_initio](WikiPedia).
+You might wonder if there is a meaning behind the repository name ... AND yes there is. It's latin for "from the beginning" [WikiPedia](http://en.wikipedia.org/wiki/Ab_initio).
 So don't let the chance slip to say something smart in your next meeting like:
 
 From "ab initio" I used "Ab-initio" to test `feature/library/framework XYZ`.
